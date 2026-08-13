@@ -38,3 +38,7 @@ async def health_check():
         config_available=config_available,
         downloads_available=downloads_available
     )
+
+@router.get("/search/status")
+async def search_status():
+    return {"status": "ok"}

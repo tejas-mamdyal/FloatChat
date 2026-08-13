@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import analysis, health, rag, rag_v2, file_management, settings
+from routers import analysis, health, rag, rag_v2
 from services.rag_service import RAGService
 from contextlib import asynccontextmanager
 import yaml
@@ -46,8 +46,7 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(settings.router, prefix="/settings", tags=["settings"])
-app.include_router(rag_v2.router, prefix="/rag", tags=["rag_v2"])
+app.include_router(rag_v2.router, prefix="/api/v1/rag", tags=["rag_v2"])
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(analysis.router, prefix="/api/v1")
 app.include_router(rag.router, prefix="/api/v1")
@@ -58,4 +57,4 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
