@@ -1,0 +1,14 @@
+data:
+  download_dir: "./downloads"
+
+postgres:
+  dbname: ${POSTGRES_DB}
+  user: ${POSTGRES_USER}
+  password: ${POSTGRES_PASSWORD}
+  host: ${POSTGRES_HOST}
+  port: ${POSTGRES_PORT}
+
+chroma:
+  persist_directory: "./chroma_store"
+
+groq_api_key: ${GROQ_API_KEY}

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    # We need both PostGIS and pgvector. pgvector/pgvector:pg16 provides pgvector.
+    # An alternative is timescale/timescaledb-ha:pg15 which includes postgis.
+    # Or just use the ankane/pgvector image and we will install postgis manually, 
+    # but the easiest off-the-shelf image for BOTH is postgis/postgis combined with pgvector.
+    # We will use ankane/pgvector which is standard, and we assume postgis is installed,
+    # or better: use ankane/pgvector:v0.5.1-pg15 as base. Actually, typical combined image is
+    # `pgvector/pgvector:pg16` which doesn't have postgis.
+    # For local development, we will use a common community image:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    environment:
+      POSTGRES_DB: argo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_dev_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      # Include an init script to create extensions if we build a custom image or run it on startup
+      - ./backend/database/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
+
+volumes:
+  db_data:

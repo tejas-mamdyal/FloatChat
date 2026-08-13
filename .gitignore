@@ -1,0 +1,74 @@
+# Environments & Secrets
+.env
+.env.*
+!.env.example
+backend/config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache/
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+frontend/bun.lockb
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Data
+data/
+datasets/
+downloads/
+backend/downloads/
+*.nc
+*.parquet
+
+# ML artifacts
+models/
+*.pkl
+*.faiss
+*.index
+
+# Vector stores
+chroma_store/
+chromadb/
+
+# FloatChat generated artifacts
+backend/chroma_store/
+backend/models/*.pkl
+backend/vector_store/
+
+# GPT Engineer
+frontend/.gpt_engineer/
+frontend/gpt-engineer.toml
